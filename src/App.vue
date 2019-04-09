@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">TodoList</router-link> |
+      <router-link to="/eventBus">TodoList - EventBus</router-link> |
+      <router-link to="/eventBus-g">TodoList - Global EventBus</router-link> |
+      <router-link to="/vuex">TodoList - Vuex</router-link>
     </div>
     <router-view/>
   </div>

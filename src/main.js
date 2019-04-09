@@ -5,6 +5,16 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+let EventBus = new Vue()
+Object.defineProperties(Vue.prototype, {
+  $bus: {
+    get () {
+      return EventBus;
+    }
+  }
+})
+// Vue.prototype.$bus = EventBus
+
 new Vue({
   router,
   store,
