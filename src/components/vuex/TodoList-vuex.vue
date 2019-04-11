@@ -17,6 +17,7 @@
 <script>
 import TodoListItem from './TodoListItem-vuex'
 import Footer from './Footer-vuex'
+import * as types from '../../store/mutation-types'
 
 export default {
     data () {
@@ -36,12 +37,14 @@ export default {
     methods: {
         addTodo () {
             this.todoList.push(this.currentTodo);
-            this.$store.commit('setTotalNum', this.todoList.length);
+            // this.$store.commit(types.SET_TOTALNUM, this.todoList.length);
+            this.$store.dispatch(types.SET_TOTALNUM, this.todoList.length);
             this.currentTodo = '';
         },
         removeTodo (idx) {
             this.todoList.splice(idx, 1);
-            this.$store.commit('setTotalNum', this.todoList.length);
+            // this.$store.commit(types.SET_TOTALNUM, this.todoList.length);
+            this.$store.dispatch(types.SET_TOTALNUM, this.todoList.length);
         }
     }
 }

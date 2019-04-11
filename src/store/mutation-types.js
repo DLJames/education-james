@@ -1,0 +1,2 @@
+export const SET_TOTALNUM = 'SET_TOTALNUM'
+export const CHANGE_DELNAME = 'CHANGE_DELNAME'

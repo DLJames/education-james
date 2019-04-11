@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import * as types from '../../store/mutation-types'
 
 export default {
     data () {
@@ -19,7 +20,8 @@ export default {
     },
     methods: {
         removeTodo (idx) {
-            this.$store.commit('changeDelName', this.itemData);//派发给Footer组件
+            // this.$store.commit(types.CHANGE_DELNAME, this.itemData);//派发给Footer组件
+            this.$store.dispatch(types.CHANGE_DELNAME, this.itemData);
             this.$emit('del-me', this.index);
         }
     },
