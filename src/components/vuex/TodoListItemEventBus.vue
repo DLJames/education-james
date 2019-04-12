@@ -1,7 +1,7 @@
 <template>
     <div class="todo-item">
         <div class="item-name">{{itemData}} - (已创建了{{totalTodos}}个ToDo)</div>
-        <div class="del-btn" @click="removeTodo(index)">Delete</div>
+        <div class="del-btn" @click="removeTodo">Delete</div>
     </div>
 </template>
 
@@ -14,27 +14,27 @@ export default {
             totalTodos: 2
         }
     },
-    props: ['itemData', 'index'],
+    props: ['itemData'],
     created () {
-        let self = this;
-        EventBus.$on('totalTodos', (num) => {
+        EventBus.$on('totalTodos', this.showTodo);
+    },
+    methods: {
+        removeTodo () {
+            EventBus.$emit('delTodo', this.itemData);//派发给Footer组件
+            this.$emit('del-me', this.itemData);
+        },
+
+        showTodo (num) {
+            var self = this;
             self.$nextTick(() => {
                 self.totalTodos = num;
             });
-            console.error('todo log trigger in ', self.itemData);
-        });
-    },
-    methods: {
-        removeTodo (idx) {
-            EventBus.$emit('delTodo', this.itemData);//派发给Footer组件
-            this.$emit('del-me', this.index);
+            console.error('log in: ', self.itemData)
         }
     },
     beforeDestroy () {
-        console.error('before destroyed', '')
-    },
-    destroyed () {
-        console.error('destroyed', '')
+        // EventBus.$off('totalTodos', this.showTodo);
+        // EventBus.$off();
     }
 }
 </script>

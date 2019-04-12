@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="todo-list">
-            <TodoListItem v-for="(item, index) in todoList" :key="index" :itemData="item" :index="index" @del-me="removeTodo"></TodoListItem>
+            <TodoListItem v-for="(item, index) in todoList" :key="index" :itemData="item" @del-me="removeTodo"></TodoListItem>
         </div>
         <Footer></Footer>
     </div>
@@ -38,8 +38,11 @@ export default {
                 this.currentTodo = '';
             });
         },
-        removeTodo (idx) {
-            this.todoList.splice(idx, 1);
+        removeTodo (name) {
+            this.todoList = this.todoList.filter((item) => {
+                return item !== name;
+            });
+            console.error('todolist==', this.todoList)
             this.$nextTick(() => {
                 EventBus.$emit('totalTodos', this.todoList.length);
             });
