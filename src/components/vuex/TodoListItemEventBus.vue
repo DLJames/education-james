@@ -25,11 +25,8 @@ export default {
         },
 
         showTodo (num) {
-            var self = this;
-            self.$nextTick(() => {
-                self.totalTodos = num;
-            });
-            console.error('log in: ', self.itemData)
+            this.totalTodos = num;
+            console.error('log in: ', this.itemData)
         }
     },
     beforeDestroy () {

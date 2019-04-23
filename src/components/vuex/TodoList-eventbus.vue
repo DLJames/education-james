@@ -42,8 +42,8 @@ export default {
             this.todoList = this.todoList.filter((item) => {
                 return item !== name;
             });
-            console.error('todolist==', this.todoList)
-            this.$nextTick(() => {
+            // console.error('todolist==', this.todoList)
+            this.$nextTick(()=>{
                 EventBus.$emit('totalTodos', this.todoList.length);
             });
         }
